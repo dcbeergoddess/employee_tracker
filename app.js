@@ -2,6 +2,7 @@ const mysql = require("mysql");
 const inquirer = require("inquirer");
 const chalk = require("chalk");
 const figlet = require('figlet');
+const Font = require('ascii-art-font');
 const cTable = require('console.table');
 
 //sql boilerplate
@@ -16,52 +17,38 @@ const connection = mysql.createConnection({
 connection.connect(err => {
   if (err) throw err;
   console.log("connected as id " + connection.threadId + "\n");
-  figlet('Employee \n Manager', function(err, data) {
-    if (err) {
-        console.log('Something went wrong...');
-        console.dir(err);
-        return;
-    }
-    console.log(data)
+  start();
 });
-  start(); 
-});
-
-function start() {
-  connection.end;
-}
 
 //Initial Start Questions
 
-// function start() {
-//   inquirer.prompt([
-//     {
-//       type: "list",
-//       message: "What would you like to do?",
-//       name: "",
-//       choices: [
-//         chalk.magenta("Manager"),
-//         chalk.yellow("Engineer"),
-//         chalk.blueBright("Intern"),
-//         chalk.greenBright("Finished")
-//       ]
-//     }
-//   ]).then(response => {
-//     // process all the answers
-//     if (response.type === chalk.magenta("Manager")) {
-//       createManager("Manager");
-//     } else if (response.type === chalk.yellow("Engineer")) {
-//       createEngineer("Engineer");
-//     } else if (response.type === chalk.blueBright("Intern")) {
-//       createIntern("Intern");
-//     } else {
-//       console.info(chalk.green("All Finished!"))
-//       // console.log(teamMembers)
-//       // console.log(idArray)
-//       connection.end();
-//     }
-//   })
-// }
+function start() {
+  console.log(chalk.blue('Employee \n Manager \n'));
+  inquirer.prompt([
+    {
+      type: "list",
+      message: "What would you like to do?",
+      name: "startchoice",
+      choices: [
+        chalk.magenta("View All Employees"),
+        chalk.yellow("Add Employee"),
+        chalk.blueBright("Update Employee Role"),
+        chalk.greenBright("Finished")
+      ]
+    }
+  ]).then(answer => {
+    if (answer.type === chalk.magenta("View All Employees")) {
+
+    } else if (answer.type === chalk.yellow("Add Employee")) {
+
+    } else if (answer.type === chalk.blueBright("Update Employee Role")) {
+
+    } else {
+
+      connection.end();
+    }
+  })
+}
 
 
 //ADD
