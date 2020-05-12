@@ -43,5 +43,17 @@ CREATE TABLE employees (
      
 )
 
+SELECT role_id, title, salary, roles.department_id as department 
+FROM roles
+LEFT JOIN departments 
+  ON roles.department = departments.department_id;
+
+
+SELECT column, another_column, …
+FROM mytable
+INNER/LEFT/RIGHT/FULL JOIN another_table 
+    ON mytable.id = another_table.matching_id
+WHERE condition(s)
+ORDER BY column, … ASC/DESC
 
 

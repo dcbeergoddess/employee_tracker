@@ -1,6 +1,6 @@
 USE CMS_DB;
 
-INSERT INTO departments (name) 
+INSERT INTO departments (department_name) 
 VALUES ('Operations'), 
 ('Tap Room'), 
 ('Brewery'), 
@@ -26,3 +26,4 @@ VALUES ('Justin', 'Cox', 1, null),
 ('El', 'Betts', 6, 3), 
 ('Austin', 'Liebrum', 7, 4), 
 ('Frankie', 'Quinton', 8, 5); 
+
