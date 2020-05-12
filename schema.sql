@@ -8,38 +8,38 @@ USE CMS_DB;
 
 -- #1 DEPARTMENT TABLE
 CREATE TABLE departments (
-  id INT NOT NULL AUTO_INCREMENT,
+  department_id INT AUTO_INCREMENT,
   name VARCHAR(30) NOT NULL,
-  PRIMARY KEY(id)
+  PRIMARY KEY(department_id)
 );
 
 -- #2 ROLE TABLE
   CREATE TABLE roles (
-  id INT NOT NULL AUTO_INCREMENT,
-  title VARCHAR(30) NULL,
-  salary DECIMAL(10,2) NULL,
+  role_id INT AUTO_INCREMENT,
+  title VARCHAR(30) NOT NULL,
+  salary DECIMAL(10,2),
   department_id INT,
-  PRIMARY KEY(id),
+  PRIMARY KEY(role_id),
     CONSTRAINT fk_departmentrole
     FOREIGN KEY (department_id) 
-        REFERENCES departments(id)
+        REFERENCES departments(department_id)
   
 );
 
 -- EMPLOYEE TABLE
 CREATE TABLE employees (
   id INT NOT NULL AUTO_INCREMENT,
-  first_name VARCHAR(30) NULL,
-  last_name VARCHAR(30) NULL,
+  first_name VARCHAR(30),
+  last_name VARCHAR(30),
   role_id INT NULL,
   manager_id INT NULL,
   PRIMARY KEY (id),
   CONSTRAINT fk_employeerole
   FOREIGN KEY (role_id) 
-  REFERENCES roles(id),
-  CONSTRAINT fk_employeedepartment
+  REFERENCES roles(role_id),
+  CONSTRAINT fk_employeemanager
   FOREIGN KEY (manager_id)
-  REFERENCES departments(id)
+  REFERENCES roles(role_id)
      
 )
 
