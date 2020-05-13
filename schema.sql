@@ -8,52 +8,45 @@ USE CMS_DB;
 
 -- #1 DEPARTMENT TABLE
 CREATE TABLE departments (
-  department_id INT AUTO_INCREMENT,
-  name VARCHAR(30) NOT NULL,
-  PRIMARY KEY(department_id)
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  department_name VARCHAR(30)
 );
 
 -- #2 ROLE TABLE
   CREATE TABLE roles (
-  role_id INT AUTO_INCREMENT,
-  title VARCHAR(30) NOT NULL,
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(30),
   salary DECIMAL(10,2),
   department_id INT,
-  PRIMARY KEY(role_id),
-    CONSTRAINT fk_departmentrole
-    FOREIGN KEY (department_id) 
-        REFERENCES departments(department_id)
+    FOREIGN KEY (department_id)
+      REFERENCES departments(id)
   
 );
 
 -- EMPLOYEE TABLE
 CREATE TABLE employees (
-  id INT NOT NULL AUTO_INCREMENT,
+  id INT AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
-  role_id INT NULL,
-  manager_id INT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT fk_employeerole
+  role_id INT,
   FOREIGN KEY (role_id) 
-  REFERENCES roles(role_id),
-  CONSTRAINT fk_employeemanager
+  REFERENCES roles(id),
+  manager_id INT NULL,
   FOREIGN KEY (manager_id)
-  REFERENCES roles(role_id)
-     
+  REFERENCES roles(id)  
 )
 
-SELECT role_id, title, salary, roles.department_id as department 
-FROM roles
-LEFT JOIN departments 
-  ON roles.department = departments.department_id;
+-- EXAMPLE OF HOW TO JOIN TABLES FOR app.js viewEmployees function--
+/* 
+SELECT employees.id, first_name, last_name, title, department_name, salary, manager_id 
+FROM employees 
+INNER JOIN roles 
+ON employees.role_id = roles.id 
+INNER JOIN departments 
+ON roles.department_id = departments.id;
+*/
 
 
-SELECT column, another_column, …
-FROM mytable
-INNER/LEFT/RIGHT/FULL JOIN another_table 
-    ON mytable.id = another_table.matching_id
-WHERE condition(s)
-ORDER BY column, … ASC/DESC
+
 
 
