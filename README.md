@@ -6,6 +6,8 @@
 
 Creating an interface/app to make it easy for non-developers to view and interact with employee information stored in databases. You should be able to view employees, roles and add employees to the database among other functionality in tracking your employees, departments and roles in multiple tables within an SQL database. 
 
+![Image](https://user-images.githubusercontent.com/59098488/88461803-c2ec0f80-ce74-11ea-9a9f-a71420e8eee8.png)
+
 ## Table Of Contents
 
 * [Installation](#installation)
